@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ui.loginRegister.LoginRegisterFragment">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegisterOrLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:textColor="@color/cyan"
+        android:layout_gravity="end"
+        android:layout_marginHorizontal="@dimen/xs"
+        android:backgroundTint="@color/tran"
+        />
+
+    <TextView
+        android:id="@+id/etTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:textSize="@dimen/xxl"
+        android:textStyle="bold"
+        />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/q"
+
+        />
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username"
+        android:paddingStart="@dimen/xs"
+        android:layout_marginHorizontal="@dimen/l"
+        android:layout_marginVertical="@dimen/xxxs"
+        android:background="@drawable/input_bg"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:paddingStart="@dimen/xs"
+        android:layout_marginHorizontal="@dimen/l"
+        android:layout_marginVertical="@dimen/xxxs"
+        android:background="@drawable/input_bg"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:paddingStart="@dimen/xs"
+        android:layout_marginHorizontal="@dimen/l"
+        android:layout_marginVertical="@dimen/xxxs"
+        android:inputType="textPassword"
+        android:background="@drawable/input_bg"/>
+
+    <EditText
+        android:id="@+id/etConPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/confrim_password"
+        android:paddingStart="@dimen/xs"
+        android:layout_marginHorizontal="@dimen/l"
+        android:layout_marginVertical="@dimen/xxxs"
+        android:inputType="textPassword"
+        android:background="@drawable/input_bg"
+        android:visibility="gone"/>
+
+    <Spinner
+        android:id="@+id/etRole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/l"
+        android:layout_marginVertical="@dimen/xxxs"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/input_bg"
+        android:entries="@array/role_options"
+        android:visibility="gone"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_login"
+        android:backgroundTint="@color/cyan"
+        android:layout_marginVertical="@dimen/s"
+        />
+
+
+</LinearLayout>
+</layout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginRegisterFragment">
+
+    <fragment
+        android:id="@+id/loginRegisterFragment"
+        android:name="com.foo.quizappfirebase.ui.loginRegister.LoginRegisterFragment"
+        android:label="fragment_login_register"
+        tools:layout="@layout/fragment_login_register" >
+        <action
+            android:id="@+id/action_loginRegisterFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_loginRegisterFragment_to_studentHomeFragment"
+            app:destination="@id/studentHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.foo.quizappfirebase.ui.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+<!--        <argument android:name="role" app:argType="string"/>-->
+
+    </fragment>
+    <fragment
+        android:id="@+id/studentHomeFragment"
+        android:name="com.foo.quizappfirebase.ui.studentHome.StudentHomeFragment"
+        android:label="fragment_student_home"
+        tools:layout="@layout/fragment_student_home" >
+<!--        <argument android:name="role" app:argType="string"/>-->
+
+    </fragment>
+</navigation>

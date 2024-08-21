@@ -24,7 +24,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/quizs\"")
+            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/quizzes\"")
         }
         release {
             isMinifyEnabled = false
@@ -40,6 +40,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    buildFeatures{
+        dataBinding = true
+        buildConfig = true
     }
 }
 
