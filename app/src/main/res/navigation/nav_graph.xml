@@ -15,22 +15,20 @@
             app:destination="@id/dashboardFragment" />
         <action
             android:id="@+id/action_loginRegisterFragment_to_studentHomeFragment"
+
             app:destination="@id/studentHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.foo.quizappfirebase.ui.dashboard.DashboardFragment"
-        android:label="fragment_dashboard"
+        android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" >
-<!--        <argument android:name="role" app:argType="string"/>-->
-
     </fragment>
     <fragment
         android:id="@+id/studentHomeFragment"
         android:name="com.foo.quizappfirebase.ui.studentHome.StudentHomeFragment"
-        android:label="fragment_student_home"
+        android:label="Home"
         tools:layout="@layout/fragment_student_home" >
-<!--        <argument android:name="role" app:argType="string"/>-->
 
     </fragment>
 </navigation>

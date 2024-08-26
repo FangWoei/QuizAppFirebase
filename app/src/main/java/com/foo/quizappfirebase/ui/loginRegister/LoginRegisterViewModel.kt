@@ -65,6 +65,7 @@ class LoginRegisterViewModel @Inject constructor(
                 if(error != null) throw Exception(error)
                 val userCreated = authService.createUserWithEmailAndPassword(email, password)
                 val userRole = Role.valueOf(role)
+
                 userRepo.createUser(User(username, email, userRole))
             }?.let {
                 _finish.emit("Registration successful")

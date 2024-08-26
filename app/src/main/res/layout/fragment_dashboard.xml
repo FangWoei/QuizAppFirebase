@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +9,16 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".ui.dashboard.DashboardFragment">
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_logout"
+        android:backgroundTint="@color/cyan"
+        android:layout_gravity="end"
+        android:layout_marginHorizontal="@dimen/l"
+        android:layout_marginVertical="@dimen/s"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,3 +31,4 @@
 
 
 </LinearLayout>
+</layout>
