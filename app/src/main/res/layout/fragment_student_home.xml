@@ -9,16 +9,6 @@
     android:gravity="center"
     tools:context=".ui.studentHome.StudentHomeFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_logout"
-        android:backgroundTint="@color/cyan"
-        android:layout_gravity="end"
-        android:layout_marginHorizontal="@dimen/l"
-        android:layout_marginVertical="@dimen/s"
-        />
 
     <TextView
         android:layout_width="wrap_content"

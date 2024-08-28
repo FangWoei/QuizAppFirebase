@@ -6,12 +6,17 @@
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="confrim_password">Confirm Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
     <string name="dashboard">Dashboard</string>
     <string name="home">Home</string>
     <string name="logout">logout</string>
-
+    <string name="quiz">Quiz</string>
+    <string name="user">User</string>
+    <string name="nothing_to_display">Nothing to display</string>
+    <string name="desc">Description</string>
+    <string name="title">Title</string>
+    <string name="success_message">%1$s successful!</string>
 
     <string-array name="role_options">
         <item>TEACHER</item>

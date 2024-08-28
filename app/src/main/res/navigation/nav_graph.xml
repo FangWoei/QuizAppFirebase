@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginRegisterFragment"
         android:name="com.foo.quizappfirebase.ui.loginRegister.LoginRegisterFragment"
-        android:label="fragment_login_register"
+        android:label=""
         tools:layout="@layout/fragment_login_register" >
         <action
             android:id="@+id/action_loginRegisterFragment_to_dashboardFragment"
@@ -23,6 +23,9 @@
         android:name="com.foo.quizappfirebase.ui.dashboard.DashboardFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_manageFragment"
+            app:destination="@id/manageFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentHomeFragment"
@@ -31,4 +34,42 @@
         tools:layout="@layout/fragment_student_home" >
 
     </fragment>
+    <fragment
+        android:id="@+id/manageFragment"
+        android:name="com.foo.quizappfirebase.ui.dashboard.addEdit.manage.ManageFragment"
+        android:label="Manage"
+        tools:layout="@layout/fragment_manage" >
+        <action
+            android:id="@+id/action_manageFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_manageFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_manageFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.foo.quizappfirebase.ui.dashboard.addEdit.edit.EditFragment"
+        android:label="Edit"
+        tools:layout="@layout/fragment_add_edit" >
+        <argument android:name="quizId" app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.foo.quizappfirebase.ui.dashboard.addEdit.add.AddFragment"
+        android:label="Add"
+        tools:layout="@layout/fragment_add_edit" />
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.foo.quizappfirebase.ui.dashboard.addEdit.quiz.QuizFragment"
+        android:label="Quiz"
+        tools:layout="@layout/fragment_quiz"
+        >
+        <argument android:name="quizId" app:argType="string" />
+
+    </fragment>
+
 </navigation>

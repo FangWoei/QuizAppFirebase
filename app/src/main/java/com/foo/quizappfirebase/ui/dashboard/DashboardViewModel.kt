@@ -8,8 +8,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    private val authService: AuthService,
-    private val userRepo: UserRepo
 ): BaseViewModel() {
 
 }

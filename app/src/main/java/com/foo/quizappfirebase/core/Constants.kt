@@ -7,4 +7,8 @@ object Constants {
     const val EMAIL_ERR = "Please enter a valid email. (e.g. johndoe123@gmail.com)"
     const val PASS_REG = "[a-zA-Z0-9#$%]{8,20}"
     const val PASS_ERR = "Password must have a length of 8 to 20, only (#$%) special characters are allowed."
+
+    const val ADD = "Add"
+    const val EDIT = "Edit"
+    const val DELETE = "Delete"
 }

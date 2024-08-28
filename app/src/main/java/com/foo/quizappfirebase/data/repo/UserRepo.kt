@@ -30,8 +30,4 @@ class UserRepo (
     }
 
 
-
-    suspend fun updateUser(user: User) {
-        getCollection().document(getUid()).set(user).await()
-    }
 }

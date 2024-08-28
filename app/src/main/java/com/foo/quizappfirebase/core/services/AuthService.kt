@@ -6,9 +6,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
 
-class AuthService (
+class AuthService(
     private val context: Context
 ){
     private val auth = FirebaseAuth.getInstance()
