@@ -32,7 +32,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/m"
+        android:layout_marginVertical="@dimen/xxxxxxl"
         >
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,33 +57,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/s"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginVertical="@dimen/xs"
-            android:layout_marginHorizontal="@dimen/xl"
-            android:gravity="center">
 
-            <ImageView
-                android:layout_width="300px"
-                android:layout_height="300px"
-                android:src="@drawable/ic_user"
-
-                />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/xxl"
-                android:text="@string/user"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
 </LinearLayout>
 
 
