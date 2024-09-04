@@ -1,32 +1,44 @@
 package com.foo.quizappfirebase.data.model
 
+
 data class Quiz(
     val id: String? = null,
+    val teacherId: String? = null,
     val title: String,
     val desc: String,
-    val quizIdForSearch: String,
-    val timeLimit: Int,
-    val questions: List<Question> = emptyList()
+    val timeLimit: String,
+    val questions: List<Question> = emptyList(),
+    val studentList: List<Student> = emptyList()
 ) {
-    fun toMap(): Map<String, Any?> =
-        mapOf(
-            "id" to id,
+
+    fun toMap(): Map<String, Any?> {
+        return hashMapOf(
             "title" to title,
             "desc" to desc,
-            "quizIdForSearch" to quizIdForSearch,
+            "teacherId" to teacherId,
             "timeLimit" to timeLimit,
-            "questions" to questions.map { it.toMap() }
+            "questions" to questions,
+            "studentList" to studentList
         )
+    }
+
+
 
     companion object {
-        fun fromMap(map: Map<*, *>): Quiz =
-            Quiz(
-                id = map["id"] as? String,
-                title = map["title"] as String,
-                desc = map["desc"] as String,
-                quizIdForSearch = map["quizIdForSearch"] as String,
-                timeLimit = (map["timeLimit"] as? Long)?.toInt() ?:0,
-                questions = (map["questions"] as? List<Map<*, *>>)?.map { Question.fromMap(it) } ?: emptyList()
-            )
+        fun fromMap(map: Map<String, Any?>): Quiz {
+            val questionsList = (map["questions"] as? List<Map<String, Any?>>)?.map { Question.fromMap(it) } ?: emptyList()
+            return Quiz(
+                title = map["title"].toString(),
+                desc = map["desc"].toString(),
+                teacherId = map["teacherId"].toString(),
+                timeLimit = map["timeLimit"].toString(),
+                questions = (map["questions"] as? ArrayList<*>)?.let { questions ->
+                    questions.map { Question.fromMap(it as Map<*, *>) }
+                } ?: emptyList(),
+                studentList = (map["studentList"] as? ArrayList<*>)?.let { students ->
+                    students.map { Student.fromMap(it as Map<*, *>) }
+                } ?: emptyList()
+                )
+        }
     }
 }

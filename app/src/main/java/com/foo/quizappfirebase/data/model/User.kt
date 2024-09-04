@@ -6,7 +6,6 @@ data class User(
     val role: Role
 ) {
     companion object {
-
         fun fromMap(map: Map<*,*>): User {
             return User(
                 username = map["username"].toString(),

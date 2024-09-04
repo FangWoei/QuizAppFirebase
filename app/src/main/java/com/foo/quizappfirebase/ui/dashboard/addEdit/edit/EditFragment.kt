@@ -21,23 +21,22 @@ class EditFragment : BaseAddEditFragment() {
 
     override fun onBindView(view: View) {
         super.onBindView(view)
-        binding?.etChangeText?.text = "Edit Quiz"
+        binding?.etChangeText?.setText(R.string.edit_quiz)
+        binding?.uploadCsvPart?.visibility = View.GONE
     }
 
     override fun onBindData(view: View) {
         super.onBindData(view)
         lifecycleScope.launch {
             viewModel.quiz.collect { quiz ->
-                if (quiz != null) {
+                quiz.let {
                     binding?.run {
-                        tvTitle.setText(quiz.title)
-                        tvDesc.setText(quiz.desc)
-                        tvQuizId.setText(quiz.quizIdForSearch)
-                        tvTimeLimit.setText(quiz.timeLimit.toString())
+                        tvTitle.setText(it.title)
+                        tvDesc.setText(it.desc)
+                        tvTimeLimit.setText(it.timeLimit)
                     }
                 }
             }
         }
     }
-
 }

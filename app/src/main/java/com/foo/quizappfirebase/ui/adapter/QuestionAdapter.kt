@@ -3,10 +3,10 @@ package com.foo.quizappfirebase.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.foo.quizappfirebase.core.utils.ResourceProvider
 import com.foo.quizappfirebase.data.model.Question
-import com.foo.quizappfirebase.data.model.Quiz
 import com.foo.quizappfirebase.databinding.ItemQuestionBinding
-import com.foo.quizappfirebase.databinding.ItemQuizBinding
+import javax.inject.Inject
 
 class QuestionAdapter(
     private var questions: List<Question>
@@ -37,7 +37,7 @@ class QuestionAdapter(
         private val binding: ItemQuestionBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(question: Question) {
-            binding.tvQuestion.text = question.text
+            binding.tvQuestion.text = question.questionText
 
             val options = listOf(binding.RadioA, binding.RadioB, binding.RadioC, binding.RadioD)
             options.forEachIndexed { index, radioButton ->

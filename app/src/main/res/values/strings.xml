@@ -17,6 +17,13 @@
     <string name="desc">Description</string>
     <string name="title">Title</string>
     <string name="success_message">%1$s successful!</string>
+    <string name="add_quiz">Add Quiz</string>
+    <string name="edit_quiz">Edit Quiz</string>
+    <string name="timer_display">%1$s seconds left</string>
+    <string name="score">Score</string>
+    <string name="time">time</string>
+    <string name="score_text">Score: %1$d</string>
+    <string name="time_taken_text">Time taken: %1$d seconds</string>
 
     <string-array name="role_options">
         <item>TEACHER</item>

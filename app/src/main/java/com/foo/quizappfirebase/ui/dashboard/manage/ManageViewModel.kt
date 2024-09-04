@@ -1,9 +1,8 @@
-package com.foo.quizappfirebase.ui.dashboard.addEdit.manage
+package com.foo.quizappfirebase.ui.dashboard.manage
 
 import androidx.lifecycle.viewModelScope
 import com.foo.quizappfirebase.R
 import com.foo.quizappfirebase.core.Constants.DELETE
-import com.foo.quizappfirebase.core.services.AuthService
 import com.foo.quizappfirebase.core.utils.ResourceProvider
 import com.foo.quizappfirebase.data.model.Quiz
 import com.foo.quizappfirebase.data.repo.QuizRepo

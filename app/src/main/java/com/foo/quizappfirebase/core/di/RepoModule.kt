@@ -14,9 +14,13 @@ import javax.inject.Singleton
 class RepoModule {
     @Provides
     @Singleton
-    fun provideNoteRepo(authService: AuthService): QuizRepo = QuizRepo(authService)
+    fun provideQuizRepo(authService: AuthService): QuizRepo {
+        return QuizRepo(authService)
+    }
 
     @Provides
     @Singleton
-    fun provideUserRepo(authService: AuthService): UserRepo = UserRepo(authService)
+    fun provideUserRepo(authService: AuthService): UserRepo {
+        return UserRepo(authService)
+    }
 }

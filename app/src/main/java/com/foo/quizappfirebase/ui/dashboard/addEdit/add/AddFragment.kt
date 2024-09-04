@@ -13,16 +13,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-
 class AddFragment : BaseAddEditFragment() {
     override val viewModel: AddViewModel by viewModels()
 
     override fun onBindView(view: View) {
         super.onBindView(view)
-        binding?.etChangeText?.text = "Add Quiz"
+        binding?.etChangeText?.setText(R.string.add_quiz)
         binding?.uploadCsvPart?.visibility = View.VISIBLE
-
     }
-
-
 }

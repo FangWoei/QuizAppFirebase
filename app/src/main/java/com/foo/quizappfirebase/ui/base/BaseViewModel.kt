@@ -9,10 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 
-abstract class BaseViewModel(
-): ViewModel(
+abstract class BaseViewModel: ViewModel() {
 
-) {
     protected val _error = MutableSharedFlow<String>()
     val error: SharedFlow<String> = _error
 
@@ -25,8 +23,8 @@ abstract class BaseViewModel(
     protected val _successful: MutableSharedFlow<String> = MutableSharedFlow()
     val successful: SharedFlow<String> = _successful
 
-    protected val _quiz = MutableStateFlow<Quiz?>(null)
-    val quiz: StateFlow<Quiz?> = _quiz
+    protected val _quiz = MutableSharedFlow<Quiz>()
+    val quiz: SharedFlow<Quiz> = _quiz
 
 
 
@@ -39,6 +37,8 @@ abstract class BaseViewModel(
             null
         }
     }
+
+
 
 
 }

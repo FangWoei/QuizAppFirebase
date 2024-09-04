@@ -1,23 +1,20 @@
 package com.foo.quizappfirebase.data.model
 
 data class Question(
-    val text: String,
+    val questionText: String,
     val options: List<String>,
     val correctAnswer: String,
 ) {
-    fun toMap(): Map<String, Any?> =
-        mapOf(
-            "text" to text,
-            "options" to options,
-            "correctAnswer" to correctAnswer,
-        )
 
     companion object {
-        fun fromMap(map: Map<*, *>): Question =
-            Question(
-                text = map["text"] as String,
-                options = (map["options"] as? List<*>)?.filterIsInstance<String>() ?: emptyList(),
-                correctAnswer = map["correctAnswer"] as String
-            )
+        fun fromMap(map: Map<*,*>): Question {
+            return map.let {
+                Question(
+                    questionText = it["questionText"].toString(),
+                    options = (it["options"] as? List<*>)?.map { option -> option.toString() } ?: emptyList(),
+                    correctAnswer = it["correctAnswer"].toString()
+                )
+            }
+        }
     }
 }

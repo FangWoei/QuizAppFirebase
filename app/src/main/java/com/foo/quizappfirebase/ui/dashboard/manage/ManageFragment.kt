@@ -1,4 +1,4 @@
-package com.foo.quizappfirebase.ui.dashboard.addEdit.manage
+package com.foo.quizappfirebase.ui.dashboard.manage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -57,13 +57,17 @@ class ManageFragment : BaseFragment<FragmentManageBinding>() {
         adapter.listener = object: QuizAdapter.Listener {
             override fun onClickItem(quiz: Quiz) {
                 findNavController().navigate(
-                    ManageFragmentDirections.actionManageFragmentToQuizFragment(quiz.id!!)
+                  ManageFragmentDirections.actionManageFragmentToQuizFragment(
+                        quiz.id!!
+                    )
                 )
             }
 
             override fun onClickEditItem(quiz: Quiz) {
                 findNavController().navigate(
-                    ManageFragmentDirections.actionManageFragmentToEditFragment(quiz.id!!)
+                    ManageFragmentDirections.actionManageFragmentToEditFragment(
+                        quiz.id!!
+                    )
                 )
             }
             override fun onDeleteItem(quiz: Quiz) { viewModel.deleteQuiz(quiz.id!!) }

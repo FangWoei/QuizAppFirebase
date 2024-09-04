@@ -3,8 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cyan">#00FFF4</color>
+    <color name="red">#FF0050</color>
     <color name="pink">#FF63E5</color>
     <color name="tran">#00FFFFFF</color>
     <color name="grey">#DCDCDC</color>
-
+    <color name="correct_answer_background">#00FF5F</color>
+    <color name="wrong_answer_background">#FF0066</color>
 </resources>

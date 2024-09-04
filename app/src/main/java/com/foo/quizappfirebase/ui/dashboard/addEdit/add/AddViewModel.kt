@@ -4,9 +4,11 @@ import android.net.Uri
 import androidx.lifecycle.viewModelScope
 import com.foo.quizappfirebase.R
 import com.foo.quizappfirebase.core.Constants.ADD
+import com.foo.quizappfirebase.core.services.AuthService
+import com.foo.quizappfirebase.core.services.ProcessCSV
 import com.foo.quizappfirebase.core.utils.ResourceProvider
+import com.foo.quizappfirebase.data.model.Question
 import com.foo.quizappfirebase.data.model.Quiz
-import com.foo.quizappfirebase.data.process.CsvProcessor
 import com.foo.quizappfirebase.data.repo.QuizRepo
 import com.foo.quizappfirebase.ui.dashboard.addEdit.base.BaseAddEditViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,25 +20,27 @@ import javax.inject.Inject
 class AddViewModel @Inject constructor(
     private val repo: QuizRepo,
     private val resourceProvider: ResourceProvider,
-    private val csvProcessor: CsvProcessor
-): BaseAddEditViewModel() {
+    private val authService: AuthService,
+    processCSV: ProcessCSV,
+) : BaseAddEditViewModel(processCSV) {
+
     override fun submit(
         title: String,
         desc: String,
-        quizIdForSearch: String,
-        timeLimit: Int,
-        csvFile: Uri?,
+        timeLimit: String,
+        selectedCsvFile: Uri?
     ) {
         viewModelScope.launch(Dispatchers.IO) {
-            if(title.isNotEmpty() && desc.isNotEmpty() && quizIdForSearch.isNotEmpty() && timeLimit > 0) {
+            if (title.isNotEmpty() && desc.isNotEmpty() && timeLimit.isNotEmpty()) {
                 errorHandler {
+                    val id = authService.getUid() ?: throw Exception("User not found")
                     repo.createQuiz(
                         Quiz(
+                            teacherId = id,
                             title = title,
                             desc = desc,
-                            quizIdForSearch = quizIdForSearch,
                             timeLimit = timeLimit,
-                            questions = csvProcessor.processQuizCsv(csvFile!!)
+                            questions = getCurrentQuestions()
                         )
                     )
                 }?.let {
@@ -44,8 +48,11 @@ class AddViewModel @Inject constructor(
                         resourceProvider.getFormattedString(R.string.success_message, ADD)
                     )
                 }
-            } else _error.emit("Details cannot be empty! and TimeLimit cannot less than 0")
-
+            } else _error.emit("Details cannot be empty!")
         }
+    }
+
+    private fun getCurrentQuestions(): List<Question> {
+        return questions
     }
 }

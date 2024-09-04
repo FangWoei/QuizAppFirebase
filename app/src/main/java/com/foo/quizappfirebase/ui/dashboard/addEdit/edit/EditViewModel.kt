@@ -1,23 +1,17 @@
 package com.foo.quizappfirebase.ui.dashboard.addEdit.edit
 
-import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.foo.quizappfirebase.R
-import com.foo.quizappfirebase.core.Constants
 import com.foo.quizappfirebase.core.Constants.EDIT
+import com.foo.quizappfirebase.core.services.ProcessCSV
 import com.foo.quizappfirebase.core.utils.ResourceProvider
-import com.foo.quizappfirebase.data.model.Quiz
-import com.foo.quizappfirebase.data.process.CsvProcessor
 import com.foo.quizappfirebase.data.repo.QuizRepo
 import com.foo.quizappfirebase.ui.dashboard.addEdit.base.BaseAddEditViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,35 +20,37 @@ class EditViewModel @Inject constructor(
     state: SavedStateHandle,
     private val repo: QuizRepo,
     private val resourceProvider: ResourceProvider,
-): BaseAddEditViewModel(){
+    processCSV: ProcessCSV
+) : BaseAddEditViewModel(processCSV) {
 
     private val quizId = state.get<String>("quizId")
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             quizId?.let {
-                errorHandler { _quiz.value = repo.getQuizById(it) }
-
+                errorHandler {
+                    val fetchedQuiz = repo.getQuizById(it)
+                    if (fetchedQuiz != null) {
+                        questions = fetchedQuiz.questions
+                        _quiz.emit(fetchedQuiz)
+                    }
+                }
             }
         }
     }
 
-    override fun submit(
-        title: String,
-        desc: String,
-        quizIdForSearch: String,
-        timeLimit: Int,
-        csvFile: Uri?
-    ) {
+    override fun submit(title: String, desc: String, timeLimit: String, selectedCsvFile: Uri?) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (title.isNotEmpty() && desc.isNotEmpty() && quizIdForSearch.isNotEmpty() && timeLimit > 0) {
-                quiz.value?.let {
+            if (title.isNotEmpty() && desc.isNotEmpty() && timeLimit.isNotEmpty()) {
+                val quiz = repo.getQuizById(quizId!!)
+                quiz?.let {
                     errorHandler {
                         repo.updateQuiz(
                             it.copy(
                                 title = title,
                                 desc = desc,
-                                quizIdForSearch = quizIdForSearch,
-                                timeLimit = timeLimit
+                                timeLimit = timeLimit,
+                                questions = questions
                             )
                         )
                         _successful.emit(
@@ -64,7 +60,7 @@ class EditViewModel @Inject constructor(
                         )
                     }
                 }
-            } else _error.emit("Details cannot be empty! and TimeLimit cannot less than 0")
+            } else _error.emit("Details cannot be empty and TimeLimit must be greater than 0")
         }
     }
 }

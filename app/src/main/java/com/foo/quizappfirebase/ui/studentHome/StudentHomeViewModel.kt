@@ -8,10 +8,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StudentHomeViewModel @Inject constructor(
-    private val authService: AuthService,
-    private val userRepo: UserRepo
 ): BaseViewModel() {
-    fun logout() {
-        authService.logOut()
-    }
+
 }

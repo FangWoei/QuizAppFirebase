@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.foo.quizappfirebase.core.utils.ResourceProvider
 import com.foo.quizappfirebase.data.model.Quiz
 import com.foo.quizappfirebase.databinding.ItemQuizBinding
+import javax.inject.Inject
 
 class QuizAdapter(
     resourceProvider: ResourceProvider,

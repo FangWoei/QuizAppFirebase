@@ -13,26 +13,30 @@ class QuizRepo(
     private val authService: AuthService
 ) {
     private fun getCollection(): CollectionReference {
-        val uid = authService.getUid() ?: throw Exception("User doesn't exist!")
-        return Firebase.firestore.collection("root_db/$uid/quizzes")
+        return Firebase.firestore.collection("quizzes")
     }
-
     fun getAllQuiz() = callbackFlow<List<Quiz>> {
-        val listener = getCollection().addSnapshotListener { value, error ->
-            if(error != null) throw error
+        val listener = getCollection().addSnapshotListener{ value, error ->
+            if (error != null) { throw error }
+
             val quizzes = mutableListOf<Quiz>()
-            value?.documents?.map { snapshot ->
-                snapshot.data?.let {
-                    quizzes.add(Quiz.fromMap(it).copy(id = snapshot.id))
+
+            value?.documents?.map { item ->
+                item.data?.let { quizMap ->
+                    val quiz = Quiz.fromMap(quizMap) // from Map type to Quiz type
+                    if(quiz.teacherId == authService.getUid())
+                        quizzes.add(quiz.copy(id = item.id))
                 }
             }
             trySend(quizzes)
         }
-        awaitClose { listener.remove() }
+        awaitClose{ listener.remove() }
     }
 
+
     suspend fun createQuiz(quiz: Quiz): String? {
-        val res = getCollection().add(quiz.toMap()).await()
+        val data = quiz.copy(teacherId = authService.getUid())
+        val res = getCollection().add(data.toMap()).await()
         return res?.id
     }
 

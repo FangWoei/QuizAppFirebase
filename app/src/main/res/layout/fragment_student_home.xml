@@ -1,24 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".ui.studentHome.StudentHomeFragment">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context=".ui.studentQuiz.StudentHomeFragment">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textSize="@dimen/xxxl"
+            android:textColor="@color/black"
+            />
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="@dimen/xxxxs"
+            android:background="@color/cyan"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/xxxxxxl"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginVertical="@dimen/xs"
+                    android:layout_marginHorizontal="@dimen/xl"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="300px"
+                        android:layout_height="300px"
+                        android:src="@drawable/ic_quiz"
+
+                        />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAddQuiz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/xxl"
+                        android:text="@string/quiz"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/home"
-        android:textStyle="bold"
-        android:textSize="@dimen/xxxl"
-        android:textColor="@color/cyan"
-        android:padding="@dimen/m"
-        />
+        </LinearLayout>
 
-</LinearLayout>
+
+
+    </LinearLayout>
 </layout>

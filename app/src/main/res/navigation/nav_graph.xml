@@ -33,10 +33,14 @@
         android:label="Home"
         tools:layout="@layout/fragment_student_home" >
 
+
+        <action
+            android:id="@+id/action_studentHomeFragment_to_addHomeFragment"
+            app:destination="@id/addHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/manageFragment"
-        android:name="com.foo.quizappfirebase.ui.dashboard.addEdit.manage.ManageFragment"
+        android:name="com.foo.quizappfirebase.ui.dashboard.manage.ManageFragment"
         android:label="Manage"
         tools:layout="@layout/fragment_manage" >
         <action
@@ -64,12 +68,45 @@
         tools:layout="@layout/fragment_add_edit" />
     <fragment
         android:id="@+id/quizFragment"
-        android:name="com.foo.quizappfirebase.ui.dashboard.addEdit.quiz.QuizFragment"
+        android:name="com.foo.quizappfirebase.ui.dashboard.quiz.QuizFragment"
         android:label="Quiz"
         tools:layout="@layout/fragment_quiz"
         >
         <argument android:name="quizId" app:argType="string" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/addHomeFragment"
+        android:name="com.foo.quizappfirebase.ui.studentHome.add.AddHomeFragment"
+        android:label="AddHomeFragment"
+        tools:layout="@layout/fragment_add_home">
+        <action
+            android:id="@+id/action_addHomeFragment_to_studentQuizFragment"
+            app:destination="@id/studentQuizFragment" >
+
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/studentQuizFragment"
+        android:name="com.foo.quizappfirebase.ui.studentHome.studentQuiz.StudentQuizFragment"
+        android:label="StudentQuizFragment" >
+        <argument android:name="studentQuizId" app:argType="string"/>
+
+        <action
+            android:id="@+id/action_studentQuizFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.foo.quizappfirebase.ui.studentHome.score.ScoreFragment"
+        android:label="ScoreFragment" >
+        <argument
+            android:name="scoreId"
+            app:argType="integer" />
+        <argument
+            android:name="timeTakenId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

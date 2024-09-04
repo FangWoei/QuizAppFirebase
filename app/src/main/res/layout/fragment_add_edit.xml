@@ -37,18 +37,6 @@
         android:paddingStart="@dimen/s"
         android:background="@drawable/input_bg"/>
 
-
-    <EditText
-        android:id="@+id/tvQuizId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quiz Id"
-        android:layout_marginTop="@dimen/l"
-        android:layout_marginHorizontal="@dimen/l"
-        android:inputType="number"
-        android:paddingStart="@dimen/s"
-        android:background="@drawable/input_bg"/>
-
     <EditText
         android:id="@+id/tvTimeLimit"
         android:layout_width="match_parent"

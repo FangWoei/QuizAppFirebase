@@ -4,17 +4,25 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-import androidx.lifecycle.lifecycleScope
+import androidx.activity.result.ActivityResultLauncher
 import androidx.navigation.fragment.findNavController
 import com.foo.quizappfirebase.R
+import androidx.activity.result.contract.ActivityResultContracts
 import com.foo.quizappfirebase.databinding.FragmentAddEditBinding
 import com.foo.quizappfirebase.ui.base.BaseFragment
-import kotlinx.coroutines.launch
 
-abstract class BaseAddEditFragment:BaseFragment<FragmentAddEditBinding>() {
+abstract class BaseAddEditFragment : BaseFragment<FragmentAddEditBinding>() {
     abstract override val viewModel: BaseAddEditViewModel
     private var selectedCsvFile: Uri? = null
     override fun getLayoutResource(): Int = R.layout.fragment_add_edit
+
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let {
+            selectedCsvFile = it
+            binding?.tvSelectedFile?.text = it.lastPathSegment
+            viewModel.getQuestionsFromCSV(it)
+        }
+    }
 
     override fun onBindView(view: View) {
         super.onBindView(view)
@@ -26,33 +34,17 @@ abstract class BaseAddEditFragment:BaseFragment<FragmentAddEditBinding>() {
                 viewModel.submit(
                     tvTitle.text.toString(),
                     tvDesc.text.toString(),
-                    tvQuizId.text.toString(),
-                    tvTimeLimit.text.toString().toIntOrNull() ?: 0,
+                    tvTimeLimit.text.toString(),
                     selectedCsvFile
                 )
-                findNavController().popBackStack()
             }
         }
     }
+
     private fun openFilePicker() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-            type = "text/csv"
-        }
-        startActivityForResult(intent, FILE_PICKER_REQUEST_CODE)
+        getContent.launch("text/csv")
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            data?.data?.let { uri ->
-                selectedCsvFile = uri
-                binding?.tvSelectedFile?.text = uri.lastPathSegment
-            }
-        }
-    }
-
-    companion object {
-        private const val FILE_PICKER_REQUEST_CODE = 123
-    }
-
 }
+
+
+
